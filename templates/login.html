@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FloraSenseAI Login</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#dfeee3;
+      overflow:hidden;
+    }
+
+    .container{
+      width:950px;
+      height:550px;
+      background:#eef6ef;
+      border-radius:20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:40px;
+      position:relative;
+      box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    /* Left Side */
+    .login-box{
+      width:380px;
+      background:white;
+      padding:40px 30px;
+      border-radius:20px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+      z-index:2;
+    }
+
+    .logo{
+      position:absolute;
+      top:25px;
+      left:50%;
+      transform:translateX(-50%);
+      font-size:32px;
+      font-weight:bold;
+      color:#166534;
+    }
+
+    .logo span{
+      color:#2e7d32;
+    }
+
+    .login-box h2{
+      text-align:center;
+      margin-bottom:10px;
+      color:#111827;
+    }
+
+    .login-box p{
+      text-align:center;
+      color:#6b7280;
+      margin-bottom:30px;
+      font-size:14px;
+    }
+
+    .input-box{
+      margin-bottom:20px;
+    }
+
+    .input-box input{
+      width:100%;
+      padding:14px;
+      border:1px solid #d1d5db;
+      border-radius:8px;
+      outline:none;
+      font-size:15px;
+      transition:0.3s;
+    }
+
+    .input-box input:focus{
+      border-color:#15803d;
+      box-shadow:0 0 5px rgba(21,128,61,0.3);
+    }
+
+    .options{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+      font-size:14px;
+    }
+
+    .options a{
+      text-decoration:none;
+      color:#2563eb;
+    }
+
+    .login-btn{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:8px;
+      background:#166534;
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .login-btn:hover{
+      background:#14532d;
+    }
+
+    .signup{
+      text-align:center;
+      margin-top:20px;
+      font-size:14px;
+    }
+
+    .signup a{
+      color:#166534;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    /* Right Side Image */
+    .image-box{
+      width:420px;
+      height:420px;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .image-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    /* Decorative Leaves */
+    .leaf1, .leaf2{
+      position:absolute;
+      opacity:0.2;
+    }
+
+    .leaf1{
+      top:0;
+      left:0;
+      width:180px;
+    }
+
+    .leaf2{
+      bottom:0;
+      right:0;
+      width:180px;
+    }
+
+    @media(max-width:900px){
+      .container{
+        flex-direction:column;
+        width:90%;
+        height:auto;
+        padding:30px;
+      }
+
+      .image-box{
+        width:100%;
+        height:250px;
+        margin-top:30px;
+      }
+
+      .login-box{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+   
+    <!-- Logo -->
+    <div class="logo">🌿FloraSense<span>AI</span></div>
+
+    <!-- Login Form -->
+    <div class="login-box">
+
+      <h2>Welcome Back!</h2>
+      <p>Login to continue to FloraSenseAI</p>
+
+      <form  action = "/login" method="POST" >
+
+        <div class="input-box">
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
+
+        <div class="input-box">
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+
+        <div class="options">
+          <label>
+            <input type="checkbox"> Remember me
+          </label>
+
+          <a href="#">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="login-btn">
+          Login
+        </button>
+
+      </form>
+
+      <div class="signup">
+        Don't have an account?
+        <a href="#">Sign Up</a>
+      </div>
+
+    </div>
+
+    <!-- Flower Image -->
+    <div class="image-box">
+      <img src="https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=1200&auto=format&fit=crop" alt="Flower">
+    </div>
+
+  </div>
+
+</body>
+</html>

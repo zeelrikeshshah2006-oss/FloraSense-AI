@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FloraSense AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e8fff0, #f5fff8);
+            color: #1f2937;
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
+        nav {
+            width: 100%;
+            background: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1b8f4d;
+        }
+
+        .logo span {
+            color: #14532d;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #16a34a;
+        }
+
+        .login-btn {
+            background: #16a34a;
+            color: white !important;
+            padding: 10px 22px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #15803d;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 50px 8%;
+        }
+
+        .hero-content h1 {
+            font-size: 60px;
+            color: #14532d;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            max-width: 850px;
+            margin: auto;
+            line-height: 1.8;
+            color: #4b5563;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 14px 32px;
+            background: #16a34a;
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .hero-btn:hover {
+            background: #166534;
+            transform: translateY(-3px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 50px;
+            color: #14532d;
+        }
+
+        /* Team Section */
+        .team-container {
+            display: flex;
+            flex-direction: row;
+            /* aligns them side-by-side */
+            justify-content: center;
+            /* centers the entire row */
+            align-items: stretch;
+            /* makes all cards equal height */
+            gap: 25px;
+            /* space between cards */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+
+        }
+
+
+        .team-card {
+            background: white;
+            /* Light, clean green tint background for the box */
+            border: 1px solid #bbf7d0;
+            /* Soft green border outline */
+            border-radius: 22px;
+            padding: 30px 20px;
+            text-align: center;
+            flex: 1;
+            /* Ensures all three cards take up equal space in the line */
+            max-width: 320px;
+            /* Prevents boxes from stretching too wide */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+
+        .team-card:hover {
+            background: #ffffff;
+            /* Flips to crisp white on hover */
+            border-color: #16a34a;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(22, 163, 74, 0.15);
+        }
+
+        .team-card img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid #16a34a;
+        }
+
+        .team-card h3 {
+            font-size: 24px;
+            color: #166534;
+            margin-bottom: 10px;
+        }
+
+        .designation {
+            color: #6b7280;
+            /* subtle grey color */
+            font-size: 14px;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        .team-card p {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        /* Reduce guide container size */
+        .guide-card {
+            display: none:
+        }
+
+        /* Unique class to make the Guide Name heading smaller */
+        .guide-title {
+            font-size: 22px;
+            /* Makes it smaller than your main section titles */
+            color: #166534;
+            /* Matches your theme color */
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Updates the guide container box to a medium size */
+        .guide-card-medium {
+            max-width: 480px;
+            /* Increased from 350px to make it medium */
+            margin: 20px auto;
+            /* Centers the box */
+            background: white;
+            padding: 30px;
+            /* Comfortable medium padding */
+            border-radius: 22px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .guide-card-medium:hover {
+            transform: translateY(-8px);
+        }
+
+
+
+        /* Features */
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 22px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature-box h3 {
+            color: #15803d;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .feature-box p {
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
+        /* About Section Box Style */
+        .about-box {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 22px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .about-box:hover {
+            transform: translateY(-6px);
+        }
+
+        .about-box p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #4b5563;
+        }
+
+        /* Footer */
+        footer {
+            background: #14532d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-content p {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">🌿 FloraSense<span>AI</span></div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="#team">Team</a>
+            <a href="{{ url_for('login') }}" class="login-btn">Login</a>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to FloraSense AI</h1>
+            <p>FloraSense AI is an intelligent flower disease detection and classification platform that helps users
+                identify healthy and diseased flowers using Artificial Intelligence.</p>
+            <a href="{{ url_for('login') }}" class="hero-btn">Get Started</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About</h2>
+        <div class="about-box">
+            <p>
+                FloraSense AI is a flower species recognition and disease detection system designed to identify
+                different types of flowers and detect possible diseases in them. It uses advanced Artificial
+                Intelligence and Deep Learning techniques to analyze flower images and provide accurate predictions. The
+                system helps users quickly understand the flower type and its health condition, making plant care easier
+                and smarter.
+            </p>
+        </div>
+    </section>
+
+    <section id="features">
+        <h2 class="section-title">Our Features</h2>
+        <div class="features-container">
+            <div class="feature-box">
+                <h3> 🌸 Flower Classification</h3>
+                <p>Detect and classify flower species using deep learning.</p>
+            </div>
+            <div class="feature-box">
+                <h3> 🦠 Disease Detection</h3>
+                <p>Identify plant diseases using AI image analysis.</p>
+            </div>
+            <div class="feature-box">
+                <h3> 📜 History Tracking</h3>
+                <p>Store previous scan reports.</p>
+            </div>
+            <div class="feature-box">
+                <h3> 🔒Secure Login System</h3>
+                <p>User authentication system.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <h2 class="section-title">Our Team</h2>
+        <div class="team-container">
+            <div class="team-card">
+                <h3>Zalak Patel</h3>
+                <p class="designation">Team Leader</p>
+            </div>
+            <div class="team-card">
+                <h3>Prina Godhasara</h3>
+                <p class="designation">Team Member</p>
+            </div>
+            <div class="team-card">
+                <h3>Zeel Shah</h3>
+                <p class="designation">Team Member</p>
+            </div>
+        </div>
+
+        <h3 class="guide-title">Guide Name</h3>
+
+        <div class="team-container">
+            <div class="guide-card-medium">
+                <h3>Palwinder Singh</h3>
+                <p>Master AI Trainer</p>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        © 2026 FloraSense AI | Transfer Learning Project
+    </footer>
+
+</body>
+
+</html>

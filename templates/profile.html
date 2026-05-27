@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Profile Page - FloraSenseAI</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #eef5ef;
+      display: flex;
+    }
+
+    /* Sidebar */
+
+    .sidebar {
+      width: 240px;
+      height: 100vh;
+      background: white;
+      padding: 25px;
+      border-right: 1px solid #ddd;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #166534;
+      margin-bottom: 40px;
+    }
+
+    .logo span {
+      color: #2e7d32;
+    }
+
+    .menu {
+      list-style: none;
+    }
+
+    .menu li {
+      margin: 18px 0;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #374151;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 15px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .menu a:hover,
+    .menu .active {
+      background: #166534;
+      color: white;
+    }
+
+    /* Main Content */
+
+    .main {
+      margin-left: 240px;
+      width: 100%;
+      padding: 30px;
+    }
+
+    /* Topbar */
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .topbar h1 {
+      font-size: 30px;
+      color: #111827;
+    }
+
+    .topbar p {
+      color: #6b7280;
+      margin-top: 5px;
+    }
+
+    .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .profile-top i {
+      font-size: 20px;
+      cursor: pointer;
+      color: #374151;
+    }
+
+    .profile-top img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Profile Container */
+
+    .profile-container {
+      background: white;
+      border-radius: 20px;
+      padding: 35px;
+      display: flex;
+      gap: 40px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      flex-wrap: wrap;
+    }
+
+    /* Left Section */
+
+    .left-section {
+      width: 320px;
+      text-align: center;
+      border-right: 1px solid #e5e7eb;
+      padding-right: 30px;
+    }
+
+    .profile-image {
+      position: relative;
+      width: 170px;
+      margin: auto;
+      cursor: pointer;
+    }
+
+    .profile-image img {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #166534;
+      transition: 0.3s;
+    }
+
+    .profile-image:hover img {
+      filter: brightness(0.7);
+    }
+
+    .profile-image .photo-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 28px;
+      opacity: 0;
+      transition: 0.3s;
+      pointer-events: none;
+    }
+
+    .profile-image:hover .photo-overlay {
+      opacity: 1;
+    }
+
+    .change-btn {
+      margin-top: 20px;
+      background: #166534;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .change-btn:hover {
+      background: #14532d;
+    }
+
+    .user-details {
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    .user-details h3 {
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+    .user-details p {
+      color: #6b7280;
+      margin-bottom: 20px;
+    }
+
+    /* Right Section */
+
+    .right-section {
+      flex: 1;
+      min-width: 320px;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #374151;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      outline: none;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: #166534;
+      box-shadow: 0 0 5px rgba(22, 101, 52, 0.3);
+    }
+
+    .update-btn {
+      width: 100%;
+      padding: 15px;
+      background: #166534;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    .update-btn:hover {
+      background: #14532d;
+    }
+
+    /* Alerts */
+    .alert {
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .alert-success {
+      background-color: #d1fae5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .alert-error {
+      background-color: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    /* Responsive */
+
+    @media(max-width:900px) {
+
+      .sidebar {
+        width: 80px;
+      }
+
+      .sidebar .logo {
+        font-size: 18px;
+      }
+
+      .menu a span {
+        display: none;
+      }
+
+      .main {
+        margin-left: 80px;
+      }
+
+      .profile-container {
+        flex-direction: column;
+      }
+
+      .left-section {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 30px;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Sidebar -->
+
+  <div class="sidebar">
+
+    <div class="logo">🌿 FloraSense<span>AI</span></div>
+
+    <ul class="menu">
+
+      <li>
+        <a href="{{ url_for('dashboard') }}">
+          <i class="fa-solid fa-house"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{{ url_for('dashboard') }}#scan">
+          <i class="fa-solid fa-leaf"></i>
+          <span>Scan and Detect </span>
+        </a>
+      </li>
+
+      <li>
+        <a href="/history">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>My History</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{{ url_for('profile') }}" class="active">
+          <i class="fa-solid fa-user"></i>
+          <span>Profile</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="/logout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <!-- Main -->
+
+  <div class="main">
+
+    <!-- Topbar -->
+
+    <div class="topbar">
+
+      <div>
+        <h1>My Profile</h1>
+        <p>Manage your account information</p>
+      </div>
+
+      <div class="profile-top">
+
+        <i class="fa-regular fa-bell"></i>
+
+        <img src="{{ '/' + user.profile_photo if user and user.get('profile_photo') else 'https://i.pravatar.cc/100' }}"
+          alt="Profile" id="topbar-avatar">
+
+      </div>
+
+    </div>
+
+    <!-- Alerts -->
+    {% if message %}
+    <div class="alert alert-{{ msg_type }}">
+      <i class="fa-solid {{ 'fa-circle-check' if msg_type == 'success' else 'fa-circle-xmark' }}"></i>
+      <span>{{ message }}</span>
+    </div>
+    {% endif %}
+
+    <!-- Profile Box -->
+
+    <div class="profile-container">
+
+      <!-- Left -->
+
+      <div class="left-section">
+
+        <div class="profile-image" onclick="document.getElementById('photo-input').click()"
+          title="Click to change photo">
+
+          <img id="profile-img-preview"
+            src="{{ '/' + user.profile_photo if user and user.get('profile_photo') else 'https://i.pravatar.cc/300' }}"
+            alt="Profile">
+
+          <div class="photo-overlay"><i class="fa-solid fa-camera"></i></div>
+
+        </div>
+
+        <!-- Hidden upload form -->
+        <form id="photo-upload-form" action="/upload_photo" method="POST" enctype="multipart/form-data"
+          style="display:none;">
+          <input type="file" id="photo-input" name="photo" accept="image/*">
+        </form>
+
+
+
+        <div class="user-details">
+
+          <h3>Full Name</h3>
+          <p>{{ user.name if user and user.name else 'User Name' }}</p>
+
+          <h3>Email</h3>
+          <p>{{ user.email if user and user.email else session['user'] }}</p>
+
+          <h3>Member Since</h3>
+          <p>May 2026</p>
+
+        </div>
+
+      </div>
+
+      <!-- Right -->
+
+      <div class="right-section">
+
+        <form action="/profile" method="POST">
+
+          <div class="form-group">
+
+            <label>Full Name</label>
+
+            <input type="text" name="name" placeholder="Enter Full Name"
+              value="{{ user.name if user and user.name else '' }}">
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Email Address</label>
+
+            <input type="email" name="email" placeholder="Enter Email"
+              value="{{ user.email if user and user.email else session['user'] }}" readonly
+              style="background-color: #f3f4f6; cursor: not-allowed;">
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Phone Number</label>
+
+            <input type="text" name="phone" placeholder="Enter Phone Number"
+              value="{{ user.phone if user and user.phone else '' }}">
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Password</label>
+
+            <input type="password" name="password" placeholder="Enter Password">
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Confirm Password</label>
+
+            <input type="password" name="confirm_password" placeholder="Confirm Password">
+
+          </div>
+
+          <button type="submit" class="update-btn">
+
+            <i class="fa-solid fa-floppy-disk"></i>
+
+            Update Profile
+
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script>
+    const photoInput = document.getElementById('photo-input');
+    const photoForm = document.getElementById('photo-upload-form');
+    const imgPreview = document.getElementById('profile-img-preview');
+    const topbarAvatar = document.getElementById('topbar-avatar');
+
+    if (photoInput) {
+      photoInput.addEventListener('change', function () {
+        if (this.files && this.files[0]) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            // Show live preview before upload
+            if (imgPreview) imgPreview.src = e.target.result;
+            if (topbarAvatar) topbarAvatar.src = e.target.result;
+          };
+          reader.readAsDataURL(this.files[0]);
+          // Auto-submit the form
+          photoForm.submit();
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html>
