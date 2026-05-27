@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: flora-sense
+    env: python
+    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+      git lfs pull
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: MONGODB_URI
+        value: "<YOUR_MONGODB_CONNECTION_STRING>"
+      - key: SECRET_KEY
+        value: "secretkey123"

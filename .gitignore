@@ -1,0 +1,16 @@
+# Python artefacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+*.dist-info/
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# Large model – tracked with Git LFS
+train_model.keras
