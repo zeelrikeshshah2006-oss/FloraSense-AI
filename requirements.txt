@@ -3,4 +3,5 @@ pymongo==4.8.0
 Werkzeug==3.0.3
 Pillow==10.4.0
 numpy==2.0.0
+tensorflow-cpu==2.16.1
 gunicorn==23.0.0
